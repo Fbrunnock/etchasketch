@@ -2,7 +2,6 @@ var cells = document.querySelectorAll('.cell')
 const resetButton = document.getElementById("resetButton");
 const sideCount = document.getElementById('sideNumber');
 const container = document.getElementById("container");
-var sideValue = document.getElementById('sidecount');
 
 for (let item of cells) {
     item.addEventListener("mouseover", function(){
@@ -23,7 +22,11 @@ sideCount.addEventListener("mousedown",()=> {
 })
 
 sideCount.addEventListener("mouseup",()=> {
-    for (let i = 0; i < (sideValue.value * sideValue.value); i++) {
+    var sideValue = parseInt(prompt("Input number (max 100)"));
+    if (sideValue > 100){
+        sideValue = parseInt(prompt("Input number (max 100)"));
+    }
+    for (let i = 0; i < (sideValue * sideValue); i++) {
         let newCell = document.createElement('div');
         newCell.className = "cell";
         newCell.addEventListener("mouseover",()=>{
@@ -31,6 +34,6 @@ sideCount.addEventListener("mouseup",()=> {
         });
         container.appendChild(newCell);
     }
-    container.style.gridTemplateColumns = `repeat(${sideValue.value}, 1fr)`
-    container.style.gridTemplateRows = `repeat(${sideValue.value}, 1fr)`
+    container.style.gridTemplateColumns = `repeat(${sideValue}, 1fr)`
+    container.style.gridTemplateRows = `repeat(${sideValue}, 1fr)`
 })
